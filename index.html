@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Veda Technology | Security Portal</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <div class="brand">
+        <div class="logo">V</div>
+        <div>
+            <h2>VEDA</h2>
+            <small>TECHNOLOGY</small>
+        </div>
+    </div>
+
+    <p class="menu-title">MAIN MENU</p>
+
+    <button onclick="showPage('dashboard')" class="nav active">▦ Dashboard</button>
+    <button onclick="showPage('awareness')" class="nav">◈ Security Awareness</button>
+    <button onclick="showPage('checklists')" class="nav">✓ Security Checklist</button>
+    <button onclick="showPage('assets')" class="nav">▤ Asset Inventory</button>
+    <button onclick="showPage('risks')" class="nav">⌁ Risk Assessment</button>
+    <button onclick="showPage('incidents')" class="nav">⚑ Incident Reporting</button>
+    <button onclick="showPage('reports')" class="nav">▧ Reports</button>
+
+    <div class="sidebar-bottom">
+        <span class="online-dot"></span>
+        Training Environment
+    </div>
+</div>
+
+<main class="main-content">
+
+    <header class="topbar">
+        <div>
+            <p class="subtitle">SECURITY AND RISK MANAGEMENT</p>
+            <h1 id="page-title">Dashboard</h1>
+        </div>
+
+        <div class="profile">
+            <span id="today"></span>
+            <div class="avatar">VT</div>
+        </div>
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page active">
+
+        <div class="welcome">
+            <div>
+                <p>VEDA TECHNOLOGY SECURITY HUB</p>
+                <h1>Build safer digital habits.</h1>
+                <span>
+                    Protect digital assets, identify cybersecurity risks
+                    and improve security awareness.
+                </span>
+            </div>
+            <div class="shield">◈</div>
+        </div>
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <p>Tracked Assets</p>
+                <h2 id="assetCount">0</h2>
+                <small>Registered assets</small>
+            </div>
+
+            <div class="stat-card">
+                <p>Assessed Risks</p>
+                <h2 id="riskCount">0</h2>
+                <small>Recorded risks</small>
+            </div>
+
+            <div class="stat-card">
+                <p>High Risks</p>
+                <h2 id="highCount">0</h2>
+                <small>Require attention</small>
+            </div>
+
+            <div class="stat-card">
+                <p>Open Incidents</p>
+                <h2 id="incidentCount">0</h2>
+                <small>Awaiting review</small>
+            </div>
+
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Risk Distribution</h3>
+                <p class="muted">Overview of recorded security risks</p>
+                <div class="chart-box">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Quick Actions</h3>
+
+                <button class="quick" onclick="showPage('awareness')">
+                    <span>✓</span>
+                    <div>
+                        <b>Learn Security Awareness</b>
+                        <small>Understand cybersecurity threats</small>
+                    </div>
+                </button>
+
+                <button class="quick" onclick="showPage('assets')">
+                    <span>▤</span>
+                    <div>
+                        <b>Manage Assets</b>
+                        <small>Register organizational assets</small>
+                    </div>
+                </button>
+
+                <button class="quick" onclick="showPage('risks')">
+                    <span>⌁</span>
+                    <div>
+                        <b>Assess Risks</b>
+                        <small>Calculate security risk scores</small>
+                    </div>
+                </button>
+
+                <button class="quick" onclick="showPage('incidents')">
+                    <span>⚑</span>
+                    <div>
+                        <b>Report Incident</b>
+                        <small>Record suspicious activities</small>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>Recent Risk Assessments</h3>
+            <div id="recentRisks"></div>
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY AWARENESS -->
+
+    <section id="awareness" class="page">
+
+        <div class="section-heading">
+            <p>CYBERSECURITY EDUCATION</p>
+            <h2>Security Awareness</h2>
+            <span>Learn how to recognize and prevent common cyber threats.</span>
+        </div>
+
+        <div class="learning-grid">
+
+            <div class="card">
+                <div class="icon purple">✉</div>
+                <h3>Phishing Attacks</h3>
+                <p>
+                    Phishing is a cyberattack in which criminals send
+                    fraudulent messages to steal information.
+                </p>
+                <ul>
+                    <li>Verify the sender's email address.</li>
+                    <li>Avoid suspicious links.</li>
+                    <li>Do not open unexpected attachments.</li>
+                    <li>Report suspicious emails.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon blue">▣</div>
+                <h3>Password Security</h3>
+                <p>
+                    Strong passwords help protect user accounts
+                    from unauthorized access.
+                </p>
+                <ul>
+                    <li>Use long and unique passwords.</li>
+                    <li>Enable multi-factor authentication.</li>
+                    <li>Never share verification codes.</li>
+                    <li>Use an approved password manager.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon green">⌘</div>
+                <h3>Device Protection</h3>
+                <p>
+                    Devices should be protected against unauthorized
+                    access and malicious software.
+                </p>
+                <ul>
+                    <li>Install security updates.</li>
+                    <li>Lock devices when unattended.</li>
+                    <li>Use approved antivirus software.</li>
+                    <li>Avoid unknown USB devices.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon orange">◉</div>
+                <h3>Data Protection</h3>
+                <p>
+                    Confidential information must be handled
+                    carefully to prevent accidental disclosure.
+                </p>
+                <ul>
+                    <li>Share files securely.</li>
+                    <li>Restrict access permissions.</li>
+                    <li>Maintain backups.</li>
+                    <li>Follow data protection policies.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>Phishing Awareness Quiz</h3>
+            <p class="muted">Select the correct answer for each question.</p>
+
+            <form id="quizForm">
+
+                <div class="question">
+                    <b>1. You receive an unexpected email requesting your password. What should you do?</b>
+                    <label><input type="radio" name="q1" value="0"> Share your password.</label>
+                    <label><input type="radio" name="q1" value="1"> Verify the sender and report the email.</label>
+                    <label><input type="radio" name="q1" value="0"> Click the link.</label>
+                </div>
+
+                <div class="question">
+                    <b>2. Which is the safest password practice?</b>
+                    <label><input type="radio" name="q2" value="0"> Reuse the same password.</label>
+                    <label><input type="radio" name="q2" value="1"> Use a unique long password.</label>
+                    <label><input type="radio" name="q2" value="0"> Share passwords.</label>
+                </div>
+
+                <div class="question">
+                    <b>3. What is MFA?</b>
+                    <label><input type="radio" name="q3" value="1"> Multi-Factor Authentication.</label>
+                    <label><input type="radio" name="q3" value="0"> File Management Access.</label>
+                    <label><input type="radio" name="q3" value="0"> Malware File Application.</label>
+                </div>
+
+                <div class="question">
+                    <b>4. What should you do with an unknown USB drive?</b>
+                    <label><input type="radio" name="q4" value="0"> Plug it into your laptop.</label>
+                    <label><input type="radio" name="q4" value="0"> Take it home.</label>
+                    <label><input type="radio" name="q4" value="1"> Do not plug it in; report it.</label>
+                </div>
+
+                <button class="primary-btn" type="submit">Submit Quiz</button>
+
+            </form>
+
+            <h3 id="quizResult"></h3>
+        </div>
+
+    </section>
+
+
+    <!-- CHECKLISTS -->
+
+    <section id="checklists" class="page">
+
+        <div class="section-heading">
+            <p>PERSONAL SECURITY</p>
+            <h2>Security Checklists</h2>
+            <span>Review basic account and device protection practices.</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Password Security Checklist</h3>
+                <div id="passwordChecklist"></div>
+                <p id="passwordProgress" class="progress-text">0/5 completed</p>
+            </div>
+
+            <div class="card">
+                <h3>Device Security Checklist</h3>
+                <div id="deviceChecklist"></div>
+                <p id="deviceProgress" class="progress-text">0/5 completed</p>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            <b>Security reminder:</b>
+            Follow your organization's official security policies.
+            These checklists are educational prompts only.
+        </div>
+
+    </section>
+
+
+    <!-- ASSET INVENTORY -->
+
+    <section id="assets" class="page">
+
+        <div class="section-heading">
+            <p>ASSET MANAGEMENT</p>
+            <h2>Asset Inventory</h2>
+            <span>Register and manage sample organizational assets.</span>
+        </div>
+
+        <div class="card">
+            <h3>Add New Asset</h3>
+
+            <form id="assetForm" class="form-grid">
+
+                <label>
+                    Asset Name
+                    <input name="name" required placeholder="Employee Laptop">
+                </label>
+
+                <label>
+                    Category
+                    <select name="category">
+                        <option>Hardware</option>
+                        <option>Software</option>
+                        <option>Application</option>
+                        <option>Network</option>
+                        <option>Data</option>
+                        <option>Service</option>
+                    </select>
+                </label>
+
+                <label>
+                    Asset Owner
+                    <input name="owner" required placeholder="IT Team">
+                </label>
+
+                <label>
+                    Sensitivity
+                    <select name="sensitivity">
+                        <option>Low</option>
+                        <option selected>Medium</option>
+                        <option>High</option>
+                    </select>
+                </label>
+
+                <label class="full">
+                    Notes
+                    <textarea name="notes" placeholder="Enter a short description"></textarea>
+                </label>
+
+                <button class="primary-btn" type="submit">Add Asset</button>
+
+            </form>
+
+            <p id="assetMessage" class="message"></p>
+        </div>
+
+        <div class="card">
+            <h3>Registered Assets</h3>
+            <div id="assetsTable"></div>
+        </div>
+
+    </section>
+
+
+    <!-- RISK ASSESSMENT -->
+
+    <section id="risks" class="page">
+
+        <div class="section-heading">
+            <p>RISK MANAGEMENT</p>
+            <h2>Risk Assessment</h2>
+            <span>Identify, calculate and manage cybersecurity risks.</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>New Risk Assessment</h3>
+
+                <form id="riskForm" class="form-grid single">
+
+                    <label>
+                        Risk Title
+                        <input name="title" required placeholder="Phishing Attack">
+                    </label>
+
+                    <label>
+                        Related Asset
+                        <input name="asset" required placeholder="Employee Email Accounts">
+                    </label>
+
+                    <label>
+                        Likelihood (1–5)
+                        <select name="likelihood">
+                            <option value="1">1 - Rare</option>
+                            <option value="2">2 - Unlikely</option>
+                            <option value="3" selected>3 - Possible</option>
+                            <option value="4">4 - Likely</option>
+                            <option value="5">5 - Almost Certain</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Impact (1–5)
+                        <select name="impact">
+                            <option value="1">1 - Insignificant</option>
+                            <option value="2">2 - Minor</option>
+                            <option value="3" selected>3 - Moderate</option>
+                            <option value="4">4 - Major</option>
+                            <option value="5">5 - Severe</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Mitigation Strategy
+                        <textarea name="mitigation" required placeholder="Enable MFA and provide security awareness training."></textarea>
+                    </label>
+
+                    <div class="score-preview">
+                        Risk Score: <strong id="riskScore">9/25</strong>
+                        <span id="riskLevel" class="badge medium">MEDIUM</span>
+                    </div>
+
+                    <button class="primary-btn" type="submit">Save Risk Assessment</button>
+
+                </form>
+
+                <p id="riskMessage" class="message"></p>
+
+            </div>
+
+            <div class="card">
+                <h3>Risk Scoring Method</h3>
+
+                <div class="formula">
+                    Likelihood × Impact = Risk Score
+                </div>
+
+                <div class="risk-guide">
+                    <div><span class="badge low">LOW</span><b>1–5</b><p>Monitor and maintain controls.</p></div>
+                    <div><span class="badge medium">MEDIUM</span><b>6–12</b><p>Plan improvements and review.</p></div>
+                    <div><span class="badge high">HIGH</span><b>13–25</b><p>Prioritize corrective action.</p></div>
+                </div>
+
+                <p class="muted">
+                    This project uses a simplified educational risk scoring model.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>Risk Register</h3>
+            <div id="risksTable"></div>
+        </div>
+
+    </section>
+
+
+    <!-- INCIDENT REPORTING -->
+
+    <section id="incidents" class="page">
+
+        <div class="section-heading">
+            <p>INCIDENT MANAGEMENT</p>
+            <h2>Incident Reporting</h2>
+            <span>Record simulated cybersecurity incidents.</span>
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Submit Incident Report</h3>
+
+                <form id="incidentForm" class="form-grid single">
+
+                    <label>
+                        Reporter Name / Role
+                        <input name="reporter" required placeholder="Sample Employee">
+                    </label>
+
+                    <label>
+                        Incident Type
+                        <select name="incident_type">
+                            <option>Phishing Email</option>
+                            <option>Lost Device</option>
+                            <option>Malware Alert</option>
+                            <option>Unauthorized Access</option>
+                            <option>Data Disclosure</option>
+                            <option>Other Suspicious Activity</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Urgency
+                        <select name="urgency">
+                            <option>Low</option>
+                            <option selected>Medium</option>
+                            <option>High</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Incident Description
+                        <textarea name="description" required placeholder="Describe the sample incident..."></textarea>
+                    </label>
+
+                    <button class="primary-btn" type="submit">Submit Incident</button>
+
+                </form>
+
+                <p id="incidentMessage" class="message"></p>
+            </div>
+
+            <div class="card">
+                <h3>Incident Response Guidelines</h3>
+
+                <ol>
+                    <li>Identify suspicious activity.</li>
+                    <li>Avoid interacting with suspicious links or files.</li>
+                    <li>Record relevant observations.</li>
+                    <li>Report the incident through official channels.</li>
+                    <li>Follow authorized security team instructions.</li>
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>Incident Register</h3>
+            <div id="incidentsTable"></div>
+        </div>
+
+    </section>
+
+
+    <!-- REPORTS -->
+
+    <section id="reports" class="page">
+
+        <div class="section-heading">
+            <p>PROJECT REPORTING</p>
+            <h2>Reports & Recommendations</h2>
+            <span>Review and export your security assessment data.</span>
+        </div>
+
+        <div class="card report-card">
+            <div class="report-icon">▧</div>
+            <div>
+                <h3>Download Security Report</h3>
+                <p>
+                    Export asset information, risk assessments and
+                    incident records into a CSV spreadsheet.
+                </p>
+                <a href="/api/report.csv" class="primary-btn">
+                    Download CSV Report
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Security Improvement Recommendations</h3>
+
+            <div class="recommendation">
+                <b>01. Employee Awareness</b>
+                <p>Conduct regular cybersecurity awareness training.</p>
+            </div>
+
+            <div class="recommendation">
+                <b>02. Password Protection</b>
+                <p>Use unique passwords and multi-factor authentication.</p>
+            </div>
+
+            <div class="recommendation">
+                <b>03. Device Security</b>
+                <p>Apply software updates and approved endpoint protection.</p>
+            </div>
+
+            <div class="recommendation">
+                <b>04. Data Protection</b>
+                <p>Use access controls, encryption and regular backups.</p>
+            </div>
+
+            <div class="recommendation">
+                <b>05. Incident Response</b>
+                <p>Maintain a clear reporting and response procedure.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        VEDA TECHNOLOGY | SECURITY AWARENESS & RISK ASSESSMENT PORTAL
+        <br>
+        Educational demonstration project · Not a production security system
+    </footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
